@@ -1,0 +1,7 @@
+"Phrases"
+{
+    "You picked up grenade"
+    {
+        "ru"    "Вы подобрали гранату {blue}{1}"
+    }
+}
