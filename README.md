@@ -1,9 +1,8 @@
 # Grenade info
 
-Shows the owner of the grenade when it was picked up by you and then:
+Shows information about a picked up grenade:
 
-* Grenade killed you
-* Grenade was thrown
+* Name of the last player who held a grenade
 
 ### Supported Games
 

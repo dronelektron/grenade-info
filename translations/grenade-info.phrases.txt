@@ -1,0 +1,8 @@
+"Phrases"
+{
+    "You picked up grenade"
+    {
+        "#format"   "{1:s}"
+        "en"    "You picked up {white}{1}'s grenade"
+    }
+}
