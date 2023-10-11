@@ -3,8 +3,10 @@
 
 #include "morecolors"
 
+#include "gi/entity-filter"
 #include "gi/use-case"
 
+#include "modules/entity-filter.sp"
 #include "modules/grenade-list.sp"
 #include "modules/message.sp"
 #include "modules/use-case.sp"
@@ -18,8 +20,8 @@ public Plugin myinfo = {
 };
 
 public void OnPluginStart() {
+    EntityFilter_Create();
     GrenadeList_Create();
-    UseCase_CreateGrenadesFilter();
     LoadTranslations("grenade-info.phrases");
 }
 
