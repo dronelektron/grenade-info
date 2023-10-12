@@ -1,8 +1,9 @@
 # Grenade info
 
-Shows information about a picked up grenade:
+Shows the name of the last owner of the picked up grenade if:
 
-* Name of the last player who held a grenade
+* This owner is not you
+* This owner is your ally
 
 ### Supported Games
 
