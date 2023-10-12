@@ -1,43 +1,53 @@
-static ArrayList g_grenades;
-static ArrayList g_owners;
-static ArrayList g_teams;
-static ArrayList g_names;
+static ArrayList g_items;
 
 void GrenadeList_Create() {
-    int nameBlockSize = ByteCountToCells(MAX_NAME_LENGTH);
-
-    g_grenades = new ArrayList();
-    g_owners = new ArrayList();
-    g_teams = new ArrayList();
-    g_names = new ArrayList(nameBlockSize);
+    g_items = new ArrayList();
 }
 
-void GrenadeList_Add(int entity, int owner, int team, const char[] ownerName) {
-    g_grenades.Push(entity);
-    g_owners.Push(owner);
-    g_teams.Push(team);
-    g_names.PushString(ownerName);
+void GrenadeList_Add(int entity, int userId, int team) {
+    int item = GrenadeList_Encode(entity, userId, team);
+
+    g_items.Push(item);
 }
 
 void GrenadeList_Remove(int index) {
-    g_grenades.Erase(index);
-    g_owners.Erase(index);
-    g_teams.Erase(index);
-    g_names.Erase(index);
+    g_items.Erase(index);
 }
 
 int GrenadeList_FindByEntity(int entity) {
-    return g_grenades.FindValue(entity);
+    for (int i = 0; i < g_items.Length; i++) {
+        int tempEntity = GrenadeList_GetEntity(i);
+
+        if (tempEntity == entity) {
+            return i;
+        }
+    }
+
+    return INDEX_NOT_FOUND;
 }
 
-int GrenadeList_GetOwner(int index) {
-    return g_owners.Get(index);
+static int GrenadeList_Encode(int entity, int userId, int team) {
+    int entityField = (entity & 0xFFFF) << 16;
+    int userIdField = (userId & 0x7FFF) << 1;
+    int teamField = team - TEAM_ALLIES;
+
+    return entityField | userIdField | teamField;
+}
+
+static int GrenadeList_GetEntity(int index) {
+    int item = g_items.Get(index);
+
+    return (item >> 16) & 0xFFFF;
+}
+
+int GrenadeList_GetUserId(int index) {
+    int item = g_items.Get(index);
+
+    return (item >> 1) & 0x7FFF;
 }
 
 int GrenadeList_GetTeam(int index) {
-    return g_teams.Get(index);
-}
+    int item = g_items.Get(index);
 
-void GrenadeList_GetOwnerName(int index, char[] ownerName) {
-    g_names.GetString(index, ownerName, MAX_NAME_LENGTH);
+    return (item & 1) + TEAM_ALLIES;
 }

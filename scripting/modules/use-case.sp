@@ -1,5 +1,19 @@
 static int g_lastPickUpClient = CLIENT_NOT_FOUND;
 
+void UseCase_AddPlayerName(int client) {
+    int userId = GetClientUserId(client);
+    char name[MAX_NAME_LENGTH];
+
+    GetClientName(client, name, sizeof(name));
+    NameList_Set(userId, name);
+}
+
+void UseCase_RemovePlayerName(int client) {
+    int userId = GetClientUserId(client);
+
+    NameList_Remove(userId);
+}
+
 void UseCase_OnWeaponEquipPost(int client, int weapon) {
     char className[CLASS_NAME_SIZE];
 
@@ -18,11 +32,10 @@ void UseCase_OnEntityCreated(int entity, const char[] className) {
 
 public void Hook_OnEntitySpawnPost(int entity) {
     int owner = GetEntPropEnt(entity, Prop_Send, "m_hOwnerEntity");
+    int ownerId = GetClientUserId(owner);
     int team = GetClientTeam(owner);
-    char ownerName[MAX_NAME_LENGTH];
 
-    GetClientName(owner, ownerName, sizeof(ownerName));
-    GrenadeList_Add(entity, owner, team, ownerName);
+    GrenadeList_Add(entity, ownerId, team);
 }
 
 void UseCase_OnEntityDestroyed(int entity) {
@@ -40,11 +53,9 @@ void UseCase_OnEntityDestroyed(int entity) {
         return;
     }
 
-    int owner = GrenadeList_GetOwner(grenadeIndex);
+    int ownerId = GrenadeList_GetUserId(grenadeIndex);
     int ownerTeam = GrenadeList_GetTeam(grenadeIndex);
-    char ownerName[MAX_NAME_LENGTH];
 
-    GrenadeList_GetOwnerName(grenadeIndex, ownerName);
     GrenadeList_Remove(grenadeIndex);
 
     if (g_lastPickUpClient == CLIENT_NOT_FOUND) {
@@ -52,6 +63,7 @@ void UseCase_OnEntityDestroyed(int entity) {
     }
 
     int lastPickUpClient = g_lastPickUpClient;
+    int owner = GetClientOfUserId(ownerId);
 
     g_lastPickUpClient = CLIENT_NOT_FOUND;
 
@@ -65,5 +77,8 @@ void UseCase_OnEntityDestroyed(int entity) {
         return;
     }
 
+    char ownerName[MAX_NAME_LENGTH];
+
+    NameList_Get(ownerId, ownerName);
     Message_YouPickedUpGrenade(lastPickUpClient, ownerName);
 }
