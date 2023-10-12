@@ -18,7 +18,7 @@ public Plugin myinfo = {
     name = "Grenade info",
     author = "Dron-elektron",
     description = "Shows information about a picked up grenade",
-    version = "0.1.1",
+    version = "1.0.0",
     url = "https://github.com/dronelektron/grenade-info"
 };
 
