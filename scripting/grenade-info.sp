@@ -4,6 +4,7 @@
 #include "morecolors"
 
 #include "gi/entity-filter"
+#include "gi/grenade-list"
 #include "gi/name-list"
 #include "gi/use-case"
 

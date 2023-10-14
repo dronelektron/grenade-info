@@ -27,27 +27,23 @@ int GrenadeList_FindByEntity(int entity) {
 }
 
 static int GrenadeList_Encode(int entity, int userId, int team) {
-    int entityField = (entity & 0xFFFF) << 16;
-    int userIdField = (userId & 0x7FFF) << 1;
-    int teamField = team - TEAM_ALLIES;
-
-    return entityField | userIdField | teamField;
+    return (entity << 16) | (userId << 1) | (team - TEAM_ALLIES);
 }
 
 static int GrenadeList_GetEntity(int index) {
     int item = g_items.Get(index);
 
-    return (item >> 16) & 0xFFFF;
+    return (item >> 16) & BIT_MASK_16;
 }
 
 int GrenadeList_GetUserId(int index) {
     int item = g_items.Get(index);
 
-    return (item >> 1) & 0x7FFF;
+    return (item >> 1) & BIT_MASK_15;
 }
 
 int GrenadeList_GetTeam(int index) {
     int item = g_items.Get(index);
 
-    return (item & 1) + TEAM_ALLIES;
+    return (item & BIT_MASK_1) + TEAM_ALLIES;
 }
