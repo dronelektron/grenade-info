@@ -6,4 +6,3 @@
 #define CLIENT_NOT_FOUND -1
 #define INDEX_NOT_FOUND -1
 #define CLASS_NAME_SIZE 32
-#define TEAM_ALLIES 2
