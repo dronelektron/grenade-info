@@ -39,6 +39,10 @@ public void Hook_OnEntitySpawnPost(int entity) {
 }
 
 void UseCase_OnEntityDestroyed(int entity) {
+    if (!IsValidEntity(entity)) {
+        return;
+    }
+
     char className[CLASS_NAME_SIZE];
 
     GetEntityClassname(entity, className, sizeof(className));
