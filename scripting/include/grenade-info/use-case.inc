@@ -1,7 +1,7 @@
-#if defined _gi_use_case_included
+#if defined _grenade_info_use_case_included
  #endinput
 #endif
-#define _gi_use_case_included
+#define _grenade_info_use_case_included
 
 #define CLIENT_NOT_FOUND -1
 #define INDEX_NOT_FOUND -1
