@@ -3,6 +3,6 @@
     "You picked up grenade"
     {
         "#format"   "{1:s}"
-        "en"    "You picked up {lightblue}{1}{default}'s grenade"
+        "en"    "You picked up ADD8E6{1}'s grenade"
     }
 }

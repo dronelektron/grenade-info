@@ -1,10 +1,9 @@
 #include <sourcemod>
 #include <sdkhooks>
 
-#include "morecolors"
-
 #include "gi/entity-filter"
 #include "gi/grenade-list"
+#include "gi/message"
 #include "gi/name-list"
 #include "gi/use-case"
 
