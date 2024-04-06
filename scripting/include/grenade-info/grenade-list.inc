@@ -1,7 +1,7 @@
-#if defined _gi_grenade_list_included
+#if defined _grenade_info_grenade_list_included
  #endinput
 #endif
-#define _gi_grenade_list_included
+#define _grenade_info_grenade_list_included
 
 #define BIT_OFFSET_ENTITY 17
 #define BIT_OFFSET_USER_ID 2

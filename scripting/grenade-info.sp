@@ -1,12 +1,11 @@
 #include <sourcemod>
 #include <sdkhooks>
 
-#include "morecolors"
-
-#include "gi/entity-filter"
-#include "gi/grenade-list"
-#include "gi/name-list"
-#include "gi/use-case"
+#include "grenade-info/entity-filter"
+#include "grenade-info/grenade-list"
+#include "grenade-info/message"
+#include "grenade-info/name-list"
+#include "grenade-info/use-case"
 
 #include "modules/entity-filter.sp"
 #include "modules/event.sp"
@@ -19,7 +18,7 @@ public Plugin myinfo = {
     name = "Grenade info",
     author = "Dron-elektron",
     description = "Shows information about a picked up grenade",
-    version = "1.0.3",
+    version = "1.0.4",
     url = "https://github.com/dronelektron/grenade-info"
 };
 
